@@ -1,0 +1,9 @@
+<md-list>
+  <h3 md-subheader>Feeds</h3>
+  <md-list-item *ngFor="let feed of feeds">
+    <md-icon md-list-avatar>rss_feed</md-icon>
+    <h4 md-line>{{feed.title}}</h4>
+    <p md-line> {{feed.description}} </p>
+    <a [routerLink]="['/feed', feed.id]">go to feed</a>
+  </md-list-item>
+</md-list>

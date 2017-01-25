@@ -1,0 +1,13 @@
+<md-sidenav-container class="example-container">
+  <md-toolbar color="primary">
+    <button md-icon-button (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    My {{name}} App
+  </md-toolbar>
+  <md-sidenav #sidenav>
+    <my-feeds></my-feeds>
+  </md-sidenav>
+  <router-outlet></router-outlet>
+  <button md-fab class="subscribe-button"><md-icon>add</md-icon></button>
+</md-sidenav-container>
