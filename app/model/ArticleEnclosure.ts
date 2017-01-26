@@ -12,27 +12,11 @@
 
 import * as models from './models';
 
-export interface Article {
-    id: number;
+export interface ArticleEnclosure {
+    length?: number;
 
-    author?: string;
+    type?: string;
 
-    category?: string;
-
-    comments?: string;
-
-    description: string;
-
-    enclosure?: models.ArticleEnclosure;
-
-    guid?: string;
-
-    link: string;
-
-    pubdate?: Date;
-
-    source?: string;
-
-    title: string;
+    url?: string;
 
 }

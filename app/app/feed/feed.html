@@ -1,0 +1,15 @@
+<div fxLayout="row">
+  <md-divider></md-divider>
+  <md-list fxFlex>
+    <h3 md-subheader>{{title}}</h3>
+    <a  md-list-item *ngFor="let article of feed">
+      <md-icon md-list-avatar>chrome_reader_mode</md-icon>
+      <h4 md-line>{{article.title}}</h4>
+      <a md-mini-fab (click)="openArticle(article.id)" mdTooltip="Read Article"><md-icon>import_contacts</md-icon></a>
+    </a>
+  </md-list>
+  <md-divider></md-divider>
+  <my-article fxFlex [feedId]="id" [articleId]="selectedArticleId" *ngIf="selectedArticleId">
+
+  </my-article>
+</div>

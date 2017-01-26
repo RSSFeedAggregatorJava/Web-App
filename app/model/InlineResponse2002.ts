@@ -12,27 +12,12 @@
 
 import * as models from './models';
 
-export interface Article {
-    id: number;
+export interface InlineResponse2002 {
+    id?: number;
 
-    author?: string;
-
-    category?: string;
-
-    comments?: string;
-
-    description: string;
-
-    enclosure?: models.ArticleEnclosure;
-
-    guid?: string;
-
-    link: string;
-
-    pubdate?: Date;
-
-    source?: string;
-
-    title: string;
+    /**
+     * title of article
+     */
+    title?: string;
 
 }

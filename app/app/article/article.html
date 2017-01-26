@@ -1,0 +1,15 @@
+<md-card class="example-card">
+  <md-card-header>
+    <md-card-title>{{article?.title}}</md-card-title>
+    <md-card-subtitle>published: {{article?.pubdate}}</md-card-subtitle>
+  </md-card-header>
+  <!-- <img md-card-image src=""> -->
+  <md-card-content>
+    <p>
+      {{article?.description}}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <a md-icon-button href="{{article?.link}}"><md-icon>link</md-icon></a>
+  </md-card-actions>
+</md-card>

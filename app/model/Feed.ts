@@ -13,25 +13,45 @@
 import * as models from './models';
 
 export interface Feed {
-    id?: number;
+    id: number;
 
     /**
      * url to download feed
      */
     url: string;
 
-    title?: string;
+    category?: string;
 
-    /**
-     * url of blog corresponding to feed
-     */
-    link?: string;
+    copyright?: string;
 
-    description?: string;
+    description: string;
+
+    docs?: string;
+
+    generator?: string;
+
+    image?: string;
 
     /**
      * ISO_639-1 language code
      */
     language?: string;
+
+    lastBuildDate?: string;
+
+    /**
+     * url of blog corresponding to feed
+     */
+    link: string;
+
+    managingEditor?: string;
+
+    pubDate?: string;
+
+    rating?: string;
+
+    title: string;
+
+    webMaster?: string;
 
 }

@@ -1,4 +1,3 @@
-// tslint:disable
 /**
  * RSS Feed Aggregator
  * This is an api for \"RSS Feed Aggregator\".  [View Subject](https://intra.epitech.eu/module/2016/M-EAP-650/PAR-9-1/acti-235029/project/file/RSS-feed-aggregator.pdf) or [Messenger group](https://www.messenger.com/t/552069568251252)  A successfull login or signup generate a key usable to authenticate request  This key is owned by one account, a request providing an apiKey should get result for the user owning this key.
@@ -20,7 +19,8 @@ import { Observable }                                        from 'rxjs/Observab
 import 'rxjs/add/operator/map';
 
 import * as models                                           from '../model/models';
-import { BASE_PATH, Configuration }                                         from '../variables';
+import { BASE_PATH }                                         from '../variables';
+import { Configuration }                                     from '../configuration';
 
 /* tslint:disable:no-unused-variable member-ordering */
 
@@ -57,12 +57,28 @@ export class ArticleApi {
 
     /**
      * retrieve article feed id and article id (id correspond to 1st, 2nd, 3rd, 4th... article)
-     *
+     * 
      * @param feedId ID of feed containing article
      * @param articleId ID of article to retrieve
      */
     public articlesFeedIdArticleIdGet(feedId: string, articleId: string, extraHttpRequestParams?: any): Observable<models.Article> {
         return this.articlesFeedIdArticleIdGetWithHttpInfo(feedId, articleId, extraHttpRequestParams)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json();
+                }
+            });
+    }
+
+    /**
+     * retrieve the lisT of articles in the feed
+     *
+     * @param feedId ID of feed containing article
+     */
+    public articlesFeedIdGet(feedId: string, extraHttpRequestParams?: any): Observable<Array<models.InlineResponse2002>> {
+        return this.articlesFeedIdGetWithHttpInfo(feedId, extraHttpRequestParams)
             .map((response: Response) => {
                 if (response.status === 204) {
                     return undefined;
@@ -91,6 +107,54 @@ export class ArticleApi {
         // verify required parameter 'articleId' is not null or undefined
         if (articleId === null || articleId === undefined) {
             throw new Error('Required parameter articleId was null or undefined when calling articlesFeedIdArticleIdGet.');
+        }
+
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+        // authentication (api_key) required
+        if (this.configuration.apiKey)
+        {
+            headers.set('api_key', this.configuration.apiKey);
+        }
+
+
+
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Get,
+            headers: headers,
+            search: queryParameters
+        });
+
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = this.extendObj(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
+
+    /**
+     * retrieve the lisT of articles in the feed
+     *
+     * @param feedId ID of feed containing article
+     */
+    public articlesFeedIdGetWithHttpInfo(feedId: string, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + `/articles/${feedId}`;
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+        // verify required parameter 'feedId' is not null or undefined
+        if (feedId === null || feedId === undefined) {
+            throw new Error('Required parameter feedId was null or undefined when calling articlesFeedIdGet.');
         }
 
 
