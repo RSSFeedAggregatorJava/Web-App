@@ -1,15 +1,23 @@
-<div fxLayout="row">
-  <md-divider></md-divider>
-  <md-list fxFlex>
-    <h3 md-subheader>{{title}}</h3>
-    <a  md-list-item *ngFor="let article of feed">
-      <md-icon md-list-avatar>chrome_reader_mode</md-icon>
-      <h4 md-line>{{article.title}}</h4>
-      <a md-mini-fab (click)="openArticle(article.id)" mdTooltip="Read Article"><md-icon>import_contacts</md-icon></a>
-    </a>
-  </md-list>
-  <md-divider></md-divider>
-  <my-article fxFlex [feedId]="id" [articleId]="selectedArticleId" *ngIf="selectedArticleId">
-
-  </my-article>
-</div>
+<md-card class="example-card">
+  <md-card-header>
+    <md-card-title>{{feed?.title}}</md-card-title>
+    <md-card-subtitle>{{feed?.description}}</md-card-subtitle>
+  </md-card-header>
+  <md-card-content fxLayout="row">
+    <md-list fxFlex>
+      <a  md-list-item *ngFor="let article of articles">
+        <md-icon md-list-avatar>chrome_reader_mode</md-icon>
+        <h4 md-line>{{article?.title}}</h4>
+        <a md-mini-fab (click)="openArticle(article.id)" mdTooltip="Read Article"><md-icon>import_contacts</md-icon></a>
+      </a>
+    </md-list>
+    <md-divider></md-divider>
+    <my-article fxFlex [feedId]="id" [articleId]="selectedArticleId" *ngIf="selectedArticleId">
+    </my-article>
+  </md-card-content>
+  <md-card-actions fxLayout="row">
+    <a md-icon-button href="{{feed?.link}}"><md-icon>link</md-icon></a>
+    <div fxFlex></div>
+    <div fxShow="feed?.pubDate">last article : {{feed?.pubDate}}</div>
+  </md-card-actions>
+</md-card>

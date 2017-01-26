@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { FeedApi } from '../../api/FeedApi';
 import { ArticleApi } from '../../api/ArticleApi';
-import { InlineResponse2001 } from '../../model/models';
+import { InlineResponse2001, Feed } from '../../model/models';
 
 declare var module: any;
 
@@ -17,7 +17,8 @@ declare var module: any;
 export class FeedComponent implements OnInit {
   title: string;
   id: string;
-  feed: InlineResponse2001[];
+  feed: Feed;
+  articles: InlineResponse2001[];
   selectedArticleId: string;
 
   constructor(
@@ -34,7 +35,11 @@ export class FeedComponent implements OnInit {
     });
     this.route.params
       .switchMap((params: Params) => this.FeedApi.feedsFeedIdGet(+params['id']))
-      .subscribe((feed: InlineResponse2001[]) => this.feed = feed);
+      .subscribe((feed: Feed) => {this.feed = feed; console.log(feed)} );
+    this.route.params
+      .switchMap((params: Params) => this.ArticleApi.articlesFeedIdGet(<any>+params['id']))
+      .subscribe((articles: InlineResponse2001[]) => this.articles = articles);
+
   }
 
   openArticle(id: string) {

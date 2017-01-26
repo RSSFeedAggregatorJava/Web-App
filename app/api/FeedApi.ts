@@ -76,7 +76,7 @@ export class FeedApi {
      * Returns id and titles of articles of this feed
      * @param feedId ID of feed that needs to be fetched
      */
-    public feedsFeedIdGet(feedId: number, extraHttpRequestParams?: any): Observable<Array<models.InlineResponse2002>> {
+    public feedsFeedIdGet(feedId: number, extraHttpRequestParams?: any): Observable<models.Feed> {
         return this.feedsFeedIdGetWithHttpInfo(feedId, extraHttpRequestParams)
             .map((response: Response) => {
                 if (response.status === 204) {

@@ -1,0 +1,12 @@
+<form [formGroup]="loginForm" (ngSubmit)="doLogin($event)" fxLayout="column" style="margin: 10px">
+  <md-input-container>
+    <input md-input formControlName="email" type="email" placeholder="Email">
+  </md-input-container>
+  <md-input-container>
+    <input md-input formControlName="password" type="password" placeholder="Password">
+  </md-input-container>
+  <div>
+    <button md-raised-button color="primary" type="submit">Login</button>
+  </div>
+</form>
+<button md-raised-button [routerLink]="['/signup']" style="margin: 10px">Signup</button>
