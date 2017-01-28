@@ -1,0 +1,18 @@
+<md-sidenav-container class="example-container">
+  <md-toolbar color="primary">
+    <button md-icon-button (click)="sidenav.open()" mdTooltip="Your feeds">
+      <md-icon>menu</md-icon>
+    </button>
+    <h1 fxFlex style="text-align: center">
+      RSS Feed Aggregator
+    </h1>
+    <button md-icon-button [routerLink]="['/login']" mdTooltip="Login">
+      <md-icon>person</md-icon>
+    </button>
+  </md-toolbar>
+  <md-sidenav #sidenav>
+    <app-feeds></app-feeds>
+  </md-sidenav>
+  <router-outlet></router-outlet>
+  <button md-fab class="subscribe-button" mdTooltip="Subscribe to a Feed" mdTooltipPosition="above" (click)="openDialog()"><md-icon>add</md-icon></button>
+</md-sidenav-container>

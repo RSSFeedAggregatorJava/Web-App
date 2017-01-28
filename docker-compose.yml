@@ -1,0 +1,21 @@
+version: '2'
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile-api
+    depends_on:
+      - mysql
+  mysql:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=C5C4ng2ohfry03gG
+      - MYSQL_DATABASE=rssfeedagregator
