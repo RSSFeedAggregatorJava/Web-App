@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MdDialog, MdDialogRef, MdSnackBar } from '@angular/material';
 import { FeedApi } from '../api/FeedApi';
-import { AuthService } from './auth/auth.service'
+import { AuthService } from './auth/auth.service';
 declare var module: any;
 
 @Component({

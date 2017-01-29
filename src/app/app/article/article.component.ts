@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ArticleApi } from '../../api/ArticleApi';
+import { AuthService } from '../auth/auth.service';
 
 declare var module: any;
 import { Article } from '../../model/models';
@@ -15,13 +16,15 @@ export class ArticleComponent implements OnChanges {
 
   constructor(
     private ArticleApi: ArticleApi,
+    private AuthService: AuthService,
   ) {}
 
 
   ngOnChanges() {
-    this.ArticleApi.articlesFeedIdArticleIdGet(this.feedId, this.articleId).subscribe((article: Article) => {
-      this.article = article;
-    });
+    this.ArticleApi.articlesFeedIdArticleIdGet(this.feedId, this.articleId, {headers: {api_key: this.AuthService.token}})
+      .subscribe((article: Article) => {
+        this.article = article;
+      });
 
   }
 }

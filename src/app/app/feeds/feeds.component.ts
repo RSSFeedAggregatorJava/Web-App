@@ -22,11 +22,11 @@ export class FeedsComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.AuthService.token);
-    this.FeedApi.feedsGet({apiToken: this.AuthService.token}).subscribe((feeds: Feed[]) => this.feeds = feeds);
+    this.FeedApi.feedsGet({headers: {api_key: this.AuthService.token}}).subscribe((feeds: Feed[]) => this.feeds = feeds);
   }
 
   unsubscribe(id: number, title: string) {
-    this.FeedApi.feedsDelete(id).subscribe((data: any) => {
+    this.FeedApi.feedsDelete(id, {headers: {api_key: this.AuthService.token}}).subscribe((data: any) => {
       this.MdSnackBar.open(`Unsubscribed from ${title}`, 'ok', { duration: 2000, });
     });
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
+import { AuthService } from '../auth/auth.service';
 
 import { FeedApi } from '../../api/FeedApi';
 import { ArticleApi } from '../../api/ArticleApi';
@@ -26,6 +27,7 @@ export class FeedComponent implements OnInit {
     private ArticleApi: ArticleApi,
     private route: ActivatedRoute,
     private location: Location,
+    private AuthService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -34,8 +36,8 @@ export class FeedComponent implements OnInit {
       this.id = params['id'];
     });
     this.route.params
-      .switchMap((params: Params) => this.FeedApi.feedsFeedIdGet(+params['id']))
-      .subscribe((feed: Feed) => {this.feed = feed; console.log(feed)} );
+      .switchMap((params: Params) => this.FeedApi.feedsFeedIdGet(+params['id'], {headers: {api_key: this.AuthService.token}}))
+      .subscribe((feed: Feed) => {this.feed = feed; } );
     this.route.params
       .switchMap((params: Params) => this.ArticleApi.articlesFeedIdGet(<any>+params['id']))
       .subscribe((articles: InlineResponse2001[]) => this.articles = articles);
