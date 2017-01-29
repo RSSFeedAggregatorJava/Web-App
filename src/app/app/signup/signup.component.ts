@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserApi } from '../../api/UserApi';
 import { MdSnackBar } from '@angular/material';
+import { AuthService } from '../auth/auth.service';
 
 declare var module: any;
 
@@ -16,14 +17,16 @@ export class SignupComponent {
   });
 
   constructor(
-    public fb: FormBuilder,
-    public UserApi: UserApi,
+    private fb: FormBuilder,
+    private UserApi: UserApi,
     private MdSnackBar: MdSnackBar,
+    private AuthService: AuthService,
   ) {}
 
   doSignup(event: any) {
     this.UserApi.usersSignupPost({email: this.signupForm.controls['email'].value, password: this.signupForm.controls['password'].value})
       .subscribe((data) => {
+        this.AuthService.token = data.apiKey;
         this.MdSnackBar.open(`Signup successful`, 'ok', { duration: 2000, });
       });
   }

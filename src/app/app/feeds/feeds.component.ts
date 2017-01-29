@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedApi } from '../../api/FeedApi';
+import { AuthService } from '../auth/auth.service';
 import { Feed } from '../../model/models';
 import { MdSidenav, MdSnackBar } from '@angular/material';
 
@@ -16,10 +17,12 @@ export class FeedsComponent implements OnInit {
     private FeedApi: FeedApi,
     private MdSidenav: MdSidenav,
     private MdSnackBar: MdSnackBar,
+    private AuthService: AuthService,
   ) {}
 
   ngOnInit() {
-    this.FeedApi.feedsGet().subscribe((feeds: Feed[]) => this.feeds = feeds);
+    console.log(this.AuthService.token);
+    this.FeedApi.feedsGet({apiToken: this.AuthService.token}).subscribe((feeds: Feed[]) => this.feeds = feeds);
   }
 
   unsubscribe(id: number, title: string) {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MdDialog, MdDialogRef, MdSnackBar } from '@angular/material';
 import { FeedApi } from '../api/FeedApi';
-
+import { AuthService } from './auth/auth.service'
 declare var module: any;
 
 @Component({
@@ -14,13 +14,15 @@ export class AppComponent  {
     public dialog: MdDialog,
     public FeedApi: FeedApi,
     public MdSnackBar: MdSnackBar,
+    public AuthService: AuthService,
   ) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(SubscribeDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.FeedApi.feedsPost(result).subscribe((data: any) => {
+        console.log(this.AuthService.token);
+        this.FeedApi.feedsPost(result, {headers: {api_token: this.AuthService.token}}).subscribe((data: any) => {
           this.MdSnackBar.open(`Subscribed to ${result}`, 'ok', { duration: 2000, });
         });
       }

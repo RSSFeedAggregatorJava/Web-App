@@ -9,6 +9,7 @@ import 'hammerjs';
 import { ArticleApi } from './api/ArticleApi';
 import { FeedApi } from './api/FeedApi';
 import { UserApi } from './api/UserApi';
+import { AuthService } from './app/auth/auth.service';
 
 
 import { AppComponent, SubscribeDialogComponent } from './app/app.component';
@@ -32,11 +33,11 @@ import { SignupComponent } from './app/signup/signup.component';
            component: FeedComponent
          },
          {
-           path: 'app-login',
+           path: 'login',
            component: LoginComponent
          },
          {
-           path: 'app-signup',
+           path: 'signup',
            component: SignupComponent
          },
        ])
@@ -54,7 +55,7 @@ import { SignupComponent } from './app/signup/signup.component';
     SubscribeDialogComponent,
   ],
   exports: [],
-  providers:    [ ArticleApi, FeedApi, UserApi ],
+  providers:    [ ArticleApi, FeedApi, UserApi, AuthService ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
