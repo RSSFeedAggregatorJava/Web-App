@@ -32,6 +32,7 @@ export class LoginComponent {
         console.log(data);
         this.router.navigate(['/']);
         this.AuthService.token = data.apiKey;
+        localStorage.setItem('token', data.apiKey);
         this.MdSnackBar.open(`Login successful`, 'ok', { duration: 2000, });
       });
 
