@@ -20,9 +20,9 @@ export class LoginComponent {
   constructor(
     public fb: FormBuilder,
     public UserApi: UserApi,
-    private MdSnackBar: MdSnackBar,
-    private AuthService: AuthService,
-    private router: Router,
+    public MdSnackBar: MdSnackBar,
+    public AuthService: AuthService,
+    public router: Router,
 
   ) {}
 

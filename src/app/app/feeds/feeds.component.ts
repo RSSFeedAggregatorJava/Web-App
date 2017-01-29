@@ -14,10 +14,10 @@ export class FeedsComponent implements OnInit {
   feeds: Feed[];
 
   constructor(
-    private FeedApi: FeedApi,
-    private MdSidenav: MdSidenav,
-    private MdSnackBar: MdSnackBar,
-    private AuthService: AuthService,
+    public FeedApi: FeedApi,
+    public MdSidenav: MdSidenav,
+    public MdSnackBar: MdSnackBar,
+    public AuthService: AuthService,
   ) {}
 
   ngOnInit() {

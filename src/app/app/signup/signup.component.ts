@@ -17,10 +17,10 @@ export class SignupComponent {
   });
 
   constructor(
-    private fb: FormBuilder,
-    private UserApi: UserApi,
-    private MdSnackBar: MdSnackBar,
-    private AuthService: AuthService,
+    public fb: FormBuilder,
+    public UserApi: UserApi,
+    public MdSnackBar: MdSnackBar,
+    public AuthService: AuthService,
   ) {}
 
   doSignup(event: any) {

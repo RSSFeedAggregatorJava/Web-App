@@ -13,6 +13,9 @@
   <md-sidenav #sidenav>
     <app-feeds></app-feeds>
   </md-sidenav>
-  <router-outlet></router-outlet>
+  <router-outlet>
+    <!-- <app-login *ngIf="!AuthService.token"></app-login>
+    <app-feeds *ngIf="AuthService.token"></app-feeds> -->
+  </router-outlet>
   <button md-fab class="subscribe-button" mdTooltip="Subscribe to a Feed" mdTooltipPosition="above" (click)="openDialog()"><md-icon>add</md-icon></button>
 </md-sidenav-container>

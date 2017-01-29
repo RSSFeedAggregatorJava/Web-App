@@ -23,11 +23,11 @@ export class FeedComponent implements OnInit {
   selectedArticleId: string;
 
   constructor(
-    private FeedApi: FeedApi,
-    private ArticleApi: ArticleApi,
-    private route: ActivatedRoute,
-    private location: Location,
-    private AuthService: AuthService,
+    public FeedApi: FeedApi,
+    public ArticleApi: ArticleApi,
+    public route: ActivatedRoute,
+    public location: Location,
+    public AuthService: AuthService,
   ) {}
 
   ngOnInit() {

@@ -15,8 +15,8 @@ export class ArticleComponent implements OnChanges {
   article: Article;
 
   constructor(
-    private ArticleApi: ArticleApi,
-    private AuthService: AuthService,
+    public ArticleApi: ArticleApi,
+    public AuthService: AuthService,
   ) {}
 
 
