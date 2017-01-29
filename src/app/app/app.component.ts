@@ -22,7 +22,7 @@ export class AppComponent  {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(this.AuthService.token);
-        this.FeedApi.feedsPost(result, {headers: {api_token: this.AuthService.token}}).subscribe((data: any) => {
+        this.FeedApi.feedsPost(result, {headers: {api_key: this.AuthService.token}}).subscribe((data: any) => {
           this.MdSnackBar.open(`Subscribed to ${result}`, 'ok', { duration: 2000, });
         });
       }
