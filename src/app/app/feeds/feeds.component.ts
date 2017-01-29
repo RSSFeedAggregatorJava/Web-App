@@ -15,7 +15,6 @@ export class FeedsComponent implements OnInit {
 
   constructor(
     public FeedApi: FeedApi,
-    public MdSidenav: MdSidenav,
     public MdSnackBar: MdSnackBar,
     public AuthService: AuthService,
   ) {}

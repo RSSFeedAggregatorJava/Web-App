@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 
 @Injectable()
 export class ArticleApi {
-    protected basePath = 'http://91.121.9.68:80/swagger-jaxrs-server-1.0.0';
+    protected basePath = 'http://91.121.9.68:8080/swagger-jaxrs-server-1.0.0';
     public defaultHeaders: Headers = new Headers();
     public configuration: Configuration = new Configuration();
 
